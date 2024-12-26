@@ -1,15 +1,30 @@
 
 const Job = require("../models/jobmodel");
 const Student = require("../models/studentmodel")
+const Company = require("../models/companymodel")
 //crud
 
 
 exports.createJob = async (req, res) =>{
-    console.log(req.body);
+    
 
+
+    const { companyName } = req.body;
+    console.log(companyName);
+   
     try 
     {
         const newjob = await Job.create(req.body);
+        const company = await Company.findOne({ name: companyName });
+        
+        if (!company) {
+            return res.status(404).json({
+                status: 'fail',
+                message: 'Company not found'
+            });
+        }
+        company.currentJobOpening.push(newjob._id);
+        await company.save();
 
         res.status(201).json({
             status:'success',
@@ -52,6 +67,9 @@ exports.getjobdata = async(req,res)=>{
 
 
 exports.getAllJobs = async (req,res)=>{
+    
+    
+    
     try{
         const jobs = await Job.find();
         res.status(200).json({

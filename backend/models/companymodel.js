@@ -11,19 +11,16 @@ const companySchema = new mongoose.Schema({
     },
     location: {
         type: String,
-        required: [true, 'Location is required.'],
+        
         trim: true,
         minlength: [3, 'Location must be at least 3 characters long.'],
         maxlength: [100, 'Location must not exceed 100 characters.']
     },
     website: {
         type: String,
-        required: [true, 'Website URL is required.'],
+        
         trim: true,
-        validate: {
-            validator: (value) => validator.isURL(value),
-            message: 'Invalid website URL.'
-        }
+       
     },
     hrEmail: {
         type: String,
@@ -43,10 +40,10 @@ const companySchema = new mongoose.Schema({
             message: 'Invalid phone number.'
         }
     },
-    currentJobOpening: {
+    currentJobOpening: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Job'
-    },
+    }],
     pastHiringDrives: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Job'
