@@ -33,6 +33,7 @@ app.use(bodyParser.json());
 
 const jobroutes = require("./routes/jobRoute")
 const studentroutes = require("./routes/studentRoute")
+const companyroutes = require("./routes/companyRoute")
 
 
 connectDB();
@@ -41,6 +42,7 @@ app.use(express.json());
 
 app.use('/api/jobs',jobroutes);
 app.use('/api/student',studentroutes)
+app.use('/api/company',companyroutes)
 
 app.get('/',(req,res)=>{
     res.send('API is running');
