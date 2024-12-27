@@ -2,6 +2,9 @@
 const Job = require("../models/jobmodel");
 const Student = require("../models/studentmodel")
 const Company = require("../models/companymodel")
+
+
+const mongoose = require('mongoose');
 //crud
 
 
@@ -279,3 +282,65 @@ exports.recuritmentdrivecompleted=async(req,res)=>{
         )
     }
 }
+
+
+exports.addFeedback = async (req, res) => {
+  try {
+    const formData  = req.body; 
+    console.log("formData");
+    console.log(formData.overview.numQuestions);
+    
+    
+    const id = req.params.id;
+
+    
+    
+    const jobId = new mongoose.Types.ObjectId(id); 
+
+    const job = await Job.findById(jobId);
+    if (!job) {
+      return res.status(404).json({ message: 'Company not found' });
+    }
+
+    // Update overview
+    if (formData.overview.numQuestions !== null) {
+      job.analytics.overview.totalQuestionsResponses.push(formData.overview.numQuestions);
+    }
+    if (formData.overview.difficulty !== null) {
+      const diff = formData.overview.difficulty;
+      job.analytics.overview.difficultyResponses.set(
+        diff,
+        (job.analytics.overview.difficultyResponses.get(diff) || 0) + 1
+      );
+    }
+
+    // Update detailedBreakdown
+    for (const topic in formData.topics) {
+      const topicData = formData.topics[topic];
+      console.log("topicData");
+      console.log(topicData);
+      if (topicData.numQuestions !== null )
+        {
+        
+        console.log("topic");
+        console.log(topic);
+        job.analytics.detailedBreakdown.get(topic).questionsResponses.push(topicData.numQuestions);
+    }
+      if (topicData.difficulty !== null) {
+        const diff = topicData.difficulty;
+        job.analytics.detailedBreakdown.get(topic).difficultyResponses.set(
+          diff,
+          (job.analytics.detailedBreakdown.get(topic).difficultyResponses.get(diff) || 0) + 1
+        );
+      }
+    }
+
+    // Save the updated document
+    await job.save();
+    res.status(200).json({ message: 'Feedback added successfully', analytics: job.analytics });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error adding feedback', error: error.message });
+  }
+};
+

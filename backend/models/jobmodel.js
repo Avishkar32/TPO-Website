@@ -80,16 +80,51 @@ const jobSchema = new Schema({
             ref: 'Student'
         }
     ],
+
     analytics: {
-        registeredStudents: {
-            type: Number,
-            default: 0
-        },
-        shortlistedCandidates: {
-            type: Number,
-            default: 0
-        }
-    }
+      overview: {
+          totalQuestionsResponses: { type: [Number], default: [] },
+          difficultyResponses: {
+              type: Map,
+              of: Number,
+              default: { Easy: 0, Medium: 0, Hard: 0 },
+          },
+      },
+      detailedBreakdown: {
+          type: Map,
+          of: new Schema({
+              questionsResponses: { type: [Number], default: [] },
+              difficultyResponses: {
+                  type: Map,
+                  of: Number,
+                  default: { Easy: 0, Medium: 0, Hard: 0 }
+              }
+          }, { _id: false }),
+          default: {
+              Arrays: {
+                  questionsResponses: [],
+                  difficultyResponses: { Easy: 0, Medium: 0, Hard: 0 }
+              },
+              "Binary Trees/Graphs": {
+                  questionsResponses: [],
+                  difficultyResponses: { Easy: 0, Medium: 0, Hard: 0 }
+              },
+              "Dynamic Programming": {
+                  questionsResponses: [],
+                  difficultyResponses: { Easy: 0, Medium: 0, Hard: 0 }
+              },
+              "Linked Lists": {
+                  questionsResponses: [],
+                  difficultyResponses: { Easy: 0, Medium: 0, Hard: 0 }
+              },
+              Strings: {
+                  questionsResponses: [],
+                  difficultyResponses: { Easy: 0, Medium: 0, Hard: 0 }
+              }
+          }
+      }
+  }
+      
 }, { timestamps: true }); // Automatically add createdAt and updatedAt fields
 
 const Job = mongoose.model('Job', jobSchema);

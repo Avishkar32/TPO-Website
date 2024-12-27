@@ -28,6 +28,10 @@ router
     .route('/feedback/:id')
     .patch(jobcontroller.pushFeedbackform)
 
+router
+    .route('/addfeedback/:id')
+    .patch(jobcontroller.addFeedback);
+
 router  
     .route('/apply/:studentId/:jobId')
     .post(jobcontroller.applyJob)
