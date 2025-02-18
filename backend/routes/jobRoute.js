@@ -36,6 +36,10 @@ router
     .route('/apply/:studentId/:jobId')
     .post(jobcontroller.applyJob)
 
+router
+    .route('/shortlist/:jobId')
+    .patch(jobcontroller.addshortlistedstudents)
+
 module.exports = router;
 
 

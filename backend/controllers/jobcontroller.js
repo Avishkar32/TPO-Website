@@ -49,7 +49,9 @@ exports.createJob = async (req, res) =>{
 exports.getjobdata = async(req,res)=>{
     try{
         
-        const job = await Job.findById(req.params.id);
+        //const job = await Job.findById(req.params.id);
+
+        const job = await Job.findById(req.params.id).populate('studentsApplied');
 
         
         res.status(200).json({
@@ -74,7 +76,7 @@ exports.getAllJobs = async (req,res)=>{
     
     
     try{
-        const jobs = await Job.find();
+        const jobs = await Job.find().populate('studentsApplied','studentname');;
         res.status(200).json({
             status:'success',
             alljobs:jobs
@@ -337,6 +339,9 @@ exports.addFeedback = async (req, res) => {
 
     // Save the updated document
     await job.save();
+
+    
+
     res.status(200).json({ message: 'Feedback added successfully', analytics: job.analytics });
   } catch (error) {
     console.error(error);
@@ -344,3 +349,40 @@ exports.addFeedback = async (req, res) => {
   }
 };
 
+exports.addshortlistedstudents = async (req, res) => {
+    try{
+        
+    const shortlistedStudents  = req.body.shortlistedStudents; 
+    console.log("shortlistedStudents api");
+    console.log(shortlistedStudents);
+
+   
+    
+    
+    const id = req.params.jobId;
+    console.log("id");
+    console.log(id);
+
+    
+    
+    const jobId = new mongoose.Types.ObjectId(id); 
+
+    const job = await Job.findById(jobId);
+    if (!job) {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+
+    // Update overview
+    if (shortlistedStudents !== null) {
+        job.shortlistedStudents=shortlistedStudents;
+    }
+
+    
+    await job.save();
+    res.status(200).json({ message: 'Shortlisted students added successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error adding feedback', error: error.message });
+  }
+
+}

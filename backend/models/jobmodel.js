@@ -81,6 +81,13 @@ const jobSchema = new Schema({
         }
     ],
 
+    shortlistedStudents: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Student'
+        }
+    ],
+
     analytics: {
       overview: {
           totalQuestionsResponses: { type: [Number], default: [] },
