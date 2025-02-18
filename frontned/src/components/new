@@ -1,0 +1,53 @@
+<div className="group">
+                  <div className="flex items-center space-x-4 p-4 rounded-lg bg-white hover:bg-blue-50/50 transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_16px_rgba(8,_112,_184,_0.1)] transform hover:-translate-y-0.5">
+                    <MapPin className="text-blue-500 w-6 h-6" />
+
+                    <div className="flex-1">
+                        <label htmlFor="status" className="block text-blue-800 font-medium mb-1">
+                            status *
+                        </label>
+                        <select
+                            id="status"
+                            name="status"
+                            value={formData.status}
+                            onChange={handleChange}
+                            className="w-full px-3 py-2 rounded-md border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            required
+                        >
+                        <option value="applicationsOpen">Applications Open</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                  </div>
+                </div>
+
+
+                message
+: 
+{errors: {…}, _message: 'Job validation failed', name: 'ValidationError', message: 'Job validation failed: location: Please select job…: `` is not a valid enum value for path `status`.'}
+status
+: 
+"fail"
+[[Prototype]]
+: 
+Object
+message
+: 
+{errors: {…}, _message: 'Job validation failed', name: 'ValidationError', message: 'Job validation failed: location: Please select job location'}
+status
+: 
+"fail"
+
+
+
+
+
+
+
+message
+: 
+{errors: {…}, _message: 'Job validation failed', name: 'ValidationError', message: 'Job validation failed: location: `Full-time` is not a valid enum value for path `location`.'}
+status
+: 
+"fail"

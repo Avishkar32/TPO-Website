@@ -1,0 +1,152 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  
+  
+}
+
+.company-profile {
+  
+    font-family: Arial, sans-serif;
+    min-width:100vh;
+    max-width: 110vw;
+    margin: 0 auto;
+    padding: 40px;
+    font-size: 1.5em;
+    background-color: #d9d9dc;
+  }
+  
+  .header {
+    background-color: #007bff;
+    color: white;
+    font-size: 2.3em;
+    text-align: center;
+ 
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+  .sec
+  {
+    background-color: #f0f0f0;
+    justify-content: space-around;
+    
+    background-color: #f9f9f9;
+    border-radius: 40px;
+    padding-left: 80px;
+    padding-top: 2px;
+    margin: 20px 0;
+  }
+  .profile-card {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+   
+    margin-bottom: 20px;
+    
+    border-radius: 40px;
+  }
+  
+  .logo img {
+    width: 350px;
+  
+    margin-right: 150px;
+    margin-left: 120px;
+  }
+  
+  .company-details h2 {
+    color: #007bff;
+    margin: 0;
+  }
+  
+  .company-details p {
+    margin: 4px 0;
+    font-weight: 500;
+  }
+  
+  .job-openings {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 40px;
+    padding-left: 80px;
+  }
+  
+  .job-openings h3 {
+    margin-top: 0;
+  }
+  
+  .job-card {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .skills-required {
+   
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  .additional-info {
+    font-size: 0.9em;
+    
+    margin-top: 8px;
+  }
+  
+  .charts {
+    display: flex;
+    justify-content: space-around;
+    
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding-bottom: 40px;
+    
+  }
+
+  .recruitment-drive {
+    background-color: #f5f5f5;
+    border-radius: 40px;
+    padding: 16px;
+    margin-top: 20px;
+    padding-left: 80px;
+    line-height: 1.2;
+  }
+  
+  
+  
+  .student {
+    background-color: #e8e6e6;
+    padding: 12px;
+    border-radius: 8px;
+    display: inline-block;
+    padding-left: 60px;
+    padding-right: 100px;
+    width: 85%;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+  }
+  .resume
+  {
+    font-size: larger;
+  }
+  .recruitment-drive h3 {
+    
+    font-size: 2.5rem;
+  }
+  .job-openings h3 {
+    
+    font-size: 2.5rem;
+    margin-bottom: 0px !important;
+  }
+  .student-name {
+    font-weight: bold;
+    color: #000;
+    text-decoration: underline;
+  }
+  
